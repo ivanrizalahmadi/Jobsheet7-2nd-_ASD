@@ -1,22 +1,15 @@
 public class Stack {
-    int size, top;
-    Pakaian data[];
+    int data[];
+    int size;
+    int top;
 
     public Stack(int size) {
         this.size = size;
-        data = new Pakaian[size];
+        data = new int[size];
         top = -1;
     }
 
-    public boolean IsEmpty() {
-        if (top == -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean IsFull() {
+    public boolean isFull() {
         if (top == size - 1) {
             return true;
         } else {
@@ -24,63 +17,53 @@ public class Stack {
         }
     }
 
-    public void push(Pakaian pkn) {
-        if (!IsFull()) {
-            top++;
-            data[top] = pkn;
+    public boolean isEmpty() {
+        if (top == -1) {
+            return true;
         } else {
-            System.out.println("Isi stack Penuh");
+            return false;
+        }
+    }
+
+    public void push(int dt) {
+        if (!isFull()) {
+            top++;
+            data[top] = dt;
+        } else {
+            System.out.println("Stack penuh");
         }
     }
 
     public void pop() {
-        if (!IsEmpty()) {
-            Pakaian x = data[top];
+        if (!isEmpty()) {
+            int x = data[top];
             top--;
-            System.out.println(
-                    "Data yang keluar : " + x.jenis + " " + x.warna + " " + x.merk + " " + x.ukuran + " " + x.harga);
+            System.out.println("Data yang dikeluarkan dari stack : " + x);
         } else {
             System.out.println("Stack masih kosong");
         }
     }
 
     public void peek() {
-        System.out.println("Elemen teratas: " + data[top].jenis + " " + data[top].warna + " " + data[top].merk + " "
-                + data[top].ukuran + " " + data[top].harga);
+        System.out.println("elemen teratas stack: " + data[top]);
     }
 
     public void print() {
-        System.out.println();
         System.out.println("Isi stack : ");
         for (int i = top; i >= 0; i--) {
-            System.out.println(data[i].jenis + " " + data[i].warna + " " + data[i].merk + " " + data[i].ukuran + " "
-                    + data[i].harga + " ");
+            System.out.println(data[i] + " ");
         }
         System.out.println("");
     }
 
     public void clear() {
-        if (!IsEmpty()) {
+        if (!isEmpty()) {
             for (int i = top; i >= 0; i--) {
                 top--;
             }
             System.out.println("Stack sudah dikosongkan");
         } else {
-            System.out.println("Gagal! Stack masih kosong");
+            System.out.println("Stack masih kosong");
         }
     }
-    public void getMax() {
-        double hargaMax =0;
-        int indexMax = -1;
-        for (int i = top; i >= 0; i--) {
-            if(data[i].harga > hargaMax ){
-                hargaMax = data[i].harga;
-                indexMax = i;
-            }
-        }
-        System.out.println(data[indexMax].jenis + " " + data[indexMax].warna + " " + data[indexMax].merk + " " + data[indexMax].ukuran + " "
-        + data[indexMax].harga + " ");
-        System.out.println();
-    }
-
 }
